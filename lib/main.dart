@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shurjopay2/mvc/view/signup_screen.dart';
-import 'mvc/view/login_screen.dart';
-import 'statement.dart';
+import 'mvc/view/screens/signup_screen.dart';
+import 'mvc/view/screens/login_screen.dart';
+import 'mvc/view/pages/statement.dart';
 import 'web/pranisheba.dart';
-import 'reset_pin.dart';
-import 'forget_pin.dart';
-import 'pages/card_page.dart';
-import 'pages/mobile_scanner.dart';
+import 'mvc/view/pages/reset_pin.dart';
+import 'mvc/view/pages/forget_pin.dart';
+import 'mvc/view/pages/card_page.dart';
+import 'mvc/view/pages/mobile_scanner.dart';
 import 'services/mobile_recharge.dart';
 import 'services/electricity_bill.dart';
 import 'services/water_bill.dart';
@@ -23,9 +23,9 @@ import 'services/travel.dart';
 import 'services/courier.dart';
 import 'services/store.dart';
 import 'services/banking.dart';
-import 'mvc/view/otp_screen.dart';
-import 'mvc/view/welcome_screen.dart';
-import 'mvc/view/home_screen.dart';
+import 'mvc/view/screens/otp_screen.dart';
+import 'mvc/view/screens/welcome_screen.dart';
+import 'mvc/view/screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
