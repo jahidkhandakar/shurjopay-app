@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shurjopay2/theme/icon_theme.dart';
+import '../theme/app_theme.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -10,9 +14,7 @@ class CustomDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 4, 216, 114),
-            ),
+            decoration: const BoxDecoration(gradient: AppTheme.primaryGradient),
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -32,102 +34,74 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: const Icon(
-              Icons.home,
-              color: Color.fromARGB(255, 4, 216, 114),
-            ),
+            leading: GradientIcon(icon: Icons.home, size: 35),
             title: const Text('Home'),
             onTap: () {
               Navigator.pop(context);
+              Get.toNamed('/services');
             },
           ),
+          const SizedBox(height: 8),
           ListTile(
-            leading: const Icon(
-              Icons.description,
-              color: Color.fromARGB(255, 4, 216, 114),
-            ),
-            title: const Text('Statement'),
-            onTap: () {
-              Navigator.pushNamed(context, '/statement');
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.credit_card,
-              color: Color.fromARGB(255, 4, 216, 114),
-            ),
-            title: const Text('Saved Cards'),
-            onTap: () {
-              Navigator.pushNamed(context, '/card');
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.settings,
-              color: Color.fromARGB(255, 4, 216, 114),
-            ),
+            leading: const GradientIcon(icon: Icons.settings, size: 35),
             title: const Text('Settings'),
             onTap: () {
               Navigator.pop(context);
+              Get.toNamed('/settings');
             },
           ),
+          const SizedBox(height: 8),
           ListTile(
-            leading: const Icon(
-              Icons.verified_user,
-              color: Color.fromARGB(255, 4, 216, 114),
-            ),
-            title: const Text('EKYC'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.person_add,
-              color: Color.fromARGB(255, 4, 216, 114),
-            ),
+            leading: const GradientIcon(icon: Icons.person_add, size: 35),
             title: const Text('Refer a friend'),
             onTap: () {
-              Navigator.pop(context);
+              const referralCode =
+                  "USER123"; // Replace with actual user ID or code
+              final referralLink =
+                  "https://shurjopay.com/signup?ref=$referralCode";
+              Share.share(
+                "Join ShurjoPay and enjoy seamless payments! Sign up using my link: $referralLink",
+                subject: "ShurjoPay Referral",
+              );
             },
           ),
+          const SizedBox(height: 8),
           ListTile(
-            leading: const Icon(
-              Icons.description_outlined,
-              color: Color.fromARGB(255, 4, 216, 114),
+            leading: const GradientIcon(
+              icon: Icons.description_outlined,
+              size: 35,
             ),
             title: const Text('Terms & Conditions'),
             onTap: () {
               Navigator.pop(context);
+              Get.toNamed('/terms');
             },
           ),
+          const SizedBox(height: 8),
           ListTile(
-            leading: const Icon(
-              Icons.privacy_tip,
-              color: Color.fromARGB(255, 4, 216, 114),
-            ),
+            leading: const GradientIcon(icon: Icons.privacy_tip, size: 35),
             title: const Text('Privacy Policy'),
             onTap: () {
               Navigator.pop(context);
+              Get.toNamed('/privacy');
             },
           ),
-          ListTile(
-            leading: const Icon(
-              Icons.support_agent,
-              color: Color.fromARGB(255, 4, 216, 114),
-            ),
-            title: const Text('Support'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          // const Divider(),
-          ListTile(
-            leading: const Icon(Icons.logout, color: Colors.red),
-            title: const Text('Logout', style: TextStyle(color: Colors.red)),
-            onTap: () {
-              Navigator.pop(context);
-            },
+          const SizedBox(height: 8),
+
+          // Help & Support as ExpansionTile
+          ExpansionTile(
+            leading: const GradientIcon(icon: Icons.support_agent, size: 35),
+            title: const Text('Help & Support'),
+            children: const [
+              ListTile(
+                leading: Icon(Icons.email, color: AppTheme.secondaryColor),
+                title: Text('info@shurjopay.com.bd'),
+              ),
+              ListTile(
+                leading: Icon(Icons.phone, color: AppTheme.primaryColor),
+                title: Text('+8809643207001'),
+              ),
+            ],
           ),
         ],
       ),

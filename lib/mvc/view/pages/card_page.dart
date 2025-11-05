@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shurjopay2/theme/app_theme.dart';
+import '../../../theme/gradient_text.dart';
 
 class CardPage extends StatefulWidget {
   const CardPage({super.key});
@@ -194,19 +196,18 @@ class _CardPageState extends State<CardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: GradientText(
           'Saved Cards',
           style: TextStyle(
             color: Colors.white,
             fontSize: 30,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Poppins',
-            fontStyle: FontStyle.italic,
           ),
+          textAlign: TextAlign.center,
         ),
         elevation: 5,
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.white,
       ),
       backgroundColor: Colors.white,
       body: ListView.builder(
@@ -317,10 +318,17 @@ class _CardPageState extends State<CardPage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _showCardTypeSelection,
-        backgroundColor: Colors.green[300],
-        child: const Icon(Icons.add, color: Colors.white),
+      floatingActionButton: Container(
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: AppTheme.primaryGradient,
+        ),
+        child: FloatingActionButton(
+          onPressed: _showCardTypeSelection,
+          backgroundColor: Colors.transparent,
+          elevation: 4,
+          child: const Icon(Icons.add, color: Colors.white),
+        ),
       ),
     );
   }
@@ -332,4 +340,5 @@ class _CardPageState extends State<CardPage> {
     _expiryDateController.dispose();
     super.dispose();
   }
+  
 }

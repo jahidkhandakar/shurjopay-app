@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+class WebViewPage extends StatelessWidget {
+  final String url;
+  const WebViewPage({super.key, required this.url});
+
+  @override
+  Widget build(BuildContext context) {
+    final WebViewController webController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse(url));
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(url),
+        backgroundColor: Colors.green,
+      ),
+      body: WebViewWidget(controller: webController),
+    );
+  }
+}
 
 class MobileScannerPage extends StatefulWidget {
   @override
@@ -26,22 +46,14 @@ class _MobileScannerPageState extends State<MobileScannerPage> {
                   print("Scanned code: $code"); // Debug log
                   controller.stop();
 
-                  // Check if it's a URL
-                  if (code.contains('://')) {
-                    final Uri uri = Uri.parse(code);
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri, mode: LaunchMode.externalApplication);
-                    } else {
-                      Get.snackbar("Error", "Could not launch the URL");
-                    }
+                  // Handle only HTTP/HTTPS links
+                  if (code.startsWith('http://') || code.startsWith('https://')) {
+                    Get.to(() => WebViewPage(url: code));
                   } else {
-                    // Try to navigate using GetX routes
-                    final matchedRoute = Get.routeTree.matchRoute(code).route;
-                    if (matchedRoute != null) {
-                      Get.offAllNamed(code);
-                    } else {
-                      Get.snackbar("Error", "Invalid QR code: not a URL or known route");
-                    }
+                    Get.snackbar("Invalid QR code", "Only http/https links are supported",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white);
                   }
                 }
               }
