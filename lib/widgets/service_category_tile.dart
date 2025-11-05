@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shurjopay2/theme/app_theme.dart'; 
 
 class ServiceCategoryTile extends StatelessWidget {
   final String title;
@@ -30,38 +31,43 @@ class ServiceCategoryTile extends StatelessWidget {
           crossAxisCount: 3,
           mainAxisSpacing: 15,
           crossAxisSpacing: 15,
-          children:
-              services.map((service) {
-                return InkWell(
-                  onTap: service['onTap'],
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade200),
+          children: services.map((service) {
+            return InkWell(
+              onTap: service['onTap'],
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey.shade200),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ShaderMask(
+                      shaderCallback: (bounds) =>
+                          AppTheme.primaryGradient.createShader(
+                        Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                      ),
+                      child: Icon(
+                        service['icon'],
+                        size: 32,
+                        color: Colors.white, // Gets masked by the gradient
+                      ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          service['icon'],
-                          size: 32,
-                          color: Colors.green[300],
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          service['label'],
-                          style: const TextStyle(
-                            fontSize: 12,
-                            color: Colors.black87,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                    const SizedBox(height: 8),
+                    Text(
+                      service['label'],
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.black87,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                  ),
-                );
-              }).toList(),
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
         ),
         const SizedBox(height: 25),
       ],

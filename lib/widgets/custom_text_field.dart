@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomTextField extends StatelessWidget {
   final String label;
   final IconData icon;
   final bool obscureText;
   final TextEditingController controller;
+  final FocusNode? focusNode;
 
-  const CustomTextFormField({
+  const CustomTextField({
     super.key,
     required this.label,
     required this.icon,
     this.obscureText = false,
     required this.controller,
+    this.focusNode,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      focusNode: focusNode,
       obscureText: obscureText,
       decoration: InputDecoration(
         prefixIcon: Icon(icon),

@@ -43,17 +43,35 @@ dependencies:
   mobile_scanner: ^7.0.0
   url_launcher: ^6.3.1
   http: ^1.4.0
+  get_storage: ^2.1.1
+  carousel_slider: ^5.1.1
+  image_picker: ^1.1.2
+  share_plus: ^11.0.0
+  flutter_inappwebview: ^6.1.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+  flutter_lints: ^5.0.0
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/logos/sp_logo.png"
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logos/sp_logo.png
+  android: true
+  ios: true
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -87,6 +105,9 @@ flutter:
     - assets/merchants/courier/
     - assets/merchants/store/
     - assets/merchants/shipping/
+    - assets/images/default_vendor.png
+    - assets/images/banner_placeholder.png
+    - assets/logos/sp_logo.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
