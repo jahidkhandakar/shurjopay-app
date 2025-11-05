@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="shurjopay2"
+        android:label="shurjoPay"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true"
